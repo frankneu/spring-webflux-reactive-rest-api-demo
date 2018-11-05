@@ -50,44 +50,44 @@ public class WebfluxDemoApplicationTests {
                 .expectBodyList(Tweet.class);
     }
 
-    @Test
-    public void testGetSingleTweet() {
-        Tweet tweet = tweetRepository.save(new Tweet("Hello, World!")).block();
-
-        webTestClient.get()
-                .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .consumeWith(response ->
-                        Assertions.assertThat(response.getResponseBody()).isNotNull());
-    }
-
-    @Test
-    public void testUpdateTweet() {
-        Tweet tweet = tweetRepository.save(new Tweet("Initial Tweet")).block();
-
-        Tweet newTweetData = new Tweet("Updated Tweet");
-
-        webTestClient.put()
-                .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .accept(MediaType.APPLICATION_JSON_UTF8)
-                .body(Mono.just(newTweetData), Tweet.class)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
-                .expectBody()
-                .jsonPath("$.text").isEqualTo("Updated Tweet");
-    }
-
-    @Test
-    public void testDeleteTweet() {
-	    Tweet tweet = tweetRepository.save(new Tweet("To be deleted")).block();
-
-	    webTestClient.delete()
-                .uri("/tweets/{id}", Collections.singletonMap("id",  tweet.getId()))
-                .exchange()
-                .expectStatus().isOk();
-    }
+//   @Test
+//    public void testGetSingleTweet() {
+//        Tweet tweet = tweetRepository.save(new Tweet("Hello, World!")).block();
+//
+//        webTestClient.get()
+//                .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
+//                .exchange()
+//                .expectStatus().isOk()
+//                .expectBody()
+//                .consumeWith(response ->
+//                        Assertions.assertThat(response.getResponseBody()).isNotNull());
+//    }
+//
+//    @Test
+//    public void testUpdateTweet() {
+//        Tweet tweet = tweetRepository.save(new Tweet("Initial Tweet")).block();
+//
+//        Tweet newTweetData = new Tweet("Updated Tweet");
+//
+//        webTestClient.put()
+//                .uri("/tweets/{id}", Collections.singletonMap("id", tweet.getId()))
+//                .contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .accept(MediaType.APPLICATION_JSON_UTF8)
+//                .body(Mono.just(newTweetData), Tweet.class)
+//                .exchange()
+//                .expectStatus().isOk()
+//                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .expectBody()
+//                .jsonPath("$.text").isEqualTo("Updated Tweet");
+//    }
+//
+//    @Test
+//    public void testDeleteTweet() {
+//	    Tweet tweet = tweetRepository.save(new Tweet("To be deleted")).block();
+//
+//	    webTestClient.delete()
+//                .uri("/tweets/{id}", Collections.singletonMap("id",  tweet.getId()))
+//                .exchange()
+//                .expectStatus().isOk();
+//    }
 }

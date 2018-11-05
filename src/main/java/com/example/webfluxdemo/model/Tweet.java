@@ -1,7 +1,7 @@
 package com.example.webfluxdemo.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,9 +12,9 @@ import java.util.Date;
 /**
  * Created by rajeevkumarsingh on 08/09/17.
  */
-@Document(collection = "tweets")
+//@Document(collection = "tweets")
 public class Tweet {
-    @Id
+    //@Id
     private String id;
 
     @NotBlank
